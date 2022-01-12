@@ -49,9 +49,8 @@ function getTwig()
         $loader = new ArrayLoader($templates);
         $twig = new Environment($loader);
 
-        $twig->addFilter(new TwigFilter('route', function () {
-
-        }));
+//        $twig->addFilter(new TwigFilter('route', function () {
+//        }));
     }
     return $twig;
 }

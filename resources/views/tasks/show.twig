@@ -1,10 +1,28 @@
 {% extends 'layouts/master.twig' %}
 {% block content %}
+    <a class="btn btn-primary" href="/tasks">Back To List</a>
 
-    <a class="btn btn-primary" href="/tasks">Back To List</a> <br/>
-
-    id: {{ task.id }} <br/>
-    {{ task.title }} <br/>
-    {{ task.status }} <br/>
-
+    <div class="card mt-5">
+        <div class="card-header">
+            <h1>{{ task.title }}</h1>
+        </div>
+        <div class="card-body">
+            <table class="table table-striped">
+                <tbody>
+                <tr>
+                    <th scope="col">#</th>
+                    <td>{{ task.id }}</td>
+                </tr>
+                <tr>
+                    <th scope="col">Title</th>
+                    <td>{{ task.title }}</td>
+                </tr>
+                <tr>
+                    <th scope="col">Status</th>
+                    <td>{{ task.status }}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
 {% endblock %}

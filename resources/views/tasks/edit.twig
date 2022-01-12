@@ -1,13 +1,29 @@
 {% extends 'layouts/master.twig' %}
 {% block content %}
-    <a class="btn btn-primary" href=/tasks">Back To List</a> <br/>
+    <a class="btn btn-primary" href="/tasks">Back To List</a>
 
-    <form action="/tasks/{{ task.id }}" method="POST">
-        <div>
-            <input class="form-control" name="title" value="{{ task.title }}" placeholder="Task Name"/>
-            <input type="hidden" name="_method" value="PUT">
+    <div class="card mt-5">
+        <div class="card-header">
+            <h1>{{ task.title }}</h1>
         </div>
-        <button type="submit" class="btn btn-primary">Update</button>
-    </form>
+        <div class="card-body">
+            <form action="/tasks/{{ task.id }}" method="POST">
+                <div class="row g-3 align-items-center">
+                    <div class="col-auto">
+                        <label class="form-label">Task Name</label>
+                    </div>
 
+                    <div class="col-auto">
+                        <input class="form-control" name="title" value="{{ task.title }}" placeholder="Task Name"/>
+                    </div>
+
+                    <div class="col-auto">
+                        <span class="form-text">Must be 8-20 characters long.</span>
+                    </div>
+                </div>
+                <input type="hidden" name="_method" value="PUT">
+                <button type="submit" class="btn btn-primary">Update</button>
+            </form>
+        </div>
+    </div>
 {% endblock %}

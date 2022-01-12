@@ -24,7 +24,12 @@ series([
         );
     },
     function () use ($db) {
-        return $db->exec("INSERT INTO tasks (title) VALUES ('Some title')");
+        return $db->exec("
+        INSERT INTO tasks (title) VALUES ('Lorem ipsum dolor sit amet, consectetur adipiscing elit.');
+        INSERT INTO tasks (title) VALUES ('In vel metus non nulla imperdiet aliquam.');
+        INSERT INTO tasks (title) VALUES ('Praesent mollis odio in eleifend hendrerit.');
+        INSERT INTO tasks (title) VALUES ('Aenean tristique tortor eu metus congue commodo.');
+        ");
     },
 ])->then(function ($results) use ($db) {
     echo 'Success: Migration completed (' . count($results) .').'. PHP_EOL;

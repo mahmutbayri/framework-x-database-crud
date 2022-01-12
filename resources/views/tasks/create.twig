@@ -1,11 +1,28 @@
 {% extends 'layouts/master.twig' %}
 {% block content %}
-    <a class="btn btn-primary" href="/tasks">Back To List</a> <br/>
+    <a class="btn btn-primary" href="/tasks">Back To List</a>
 
-    <form action="/tasks" method="POST">
-        <div>
-            <input class="form-control" name="title" placeholder="Task Name"/>
+    <div class="card mt-5">
+        <div class="card-header">
+            <h1>Create a new task</h1>
         </div>
-        <button type="submit" class="btn btn-primary">Add</button>
-    </form>
+        <div class="card-body">
+            <form action="/tasks" method="POST">
+                <div class="row g-3 align-items-center">
+                    <div class="col-auto">
+                        <label class="form-label">Task Name</label>
+                    </div>
+
+                    <div class="col-auto">
+                        <input class="form-control" name="title">
+                    </div>
+
+                    <div class="col-auto">
+                        <span class="form-text">Must be 8-20 characters long.</span>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary">Add</button>
+            </form>
+        </div>
+    </div>
 {% endblock %}

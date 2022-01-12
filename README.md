@@ -7,6 +7,9 @@
 - PHP-watcher. https://github.com/seregazhuk/php-watcher
 
 ## Installation
+    mkdir framework-x-database-crud
+    cd framework-x-database-crud
+    git clone git@github.com:mahmutbayri/framework-x-database-crud.git .
     composer install
     php migrate.php
 
@@ -18,3 +21,21 @@
     X_LISTEN=0.0.0.0:8081 ./vendor/bin/php-watcher --watch src --watch resources public/index.php --ext=php,twig
 
 Navigate: http://localhost:8081/tasks
+
+## Screenshots
+
+List the tasks
+
+![](screenshots/indexMedium.jpeg)
+
+Create a task
+
+![](screenshots/createMedium.jpeg)
+
+Show a task
+
+![](screenshots/showMedium.jpeg)
+
+Edit a task
+
+![](screenshots/editMedium.jpeg)
