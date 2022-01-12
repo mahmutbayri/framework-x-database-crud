@@ -1,5 +1,7 @@
 {
-    "name": "vagrant/project",
+    "name": "mahmutbayri/framework-x-database-crud",
+    "homepage": "https://github.com/mahmutbayri/framework-x-database-crud",
+    "keywords": ["reactphp", "framework x", "twig"],
     "autoload": {
         "psr-4": {
             "MahmutBayri\\FrameworkXCrud\\": "src/"
@@ -12,11 +14,11 @@
         }
     ],
     "require": {
-        "react/mysql": "^0.5.6",
+        "ext-json": "*",
         "clue/reactphp-sqlite": "^1.3",
-        "clue/block-react": "^1.5",
         "react/async": "3.x",
-        "clue/framework-x": "dev-main"
+        "clue/framework-x": "dev-main",
+        "twig/twig": "^3.3"
     },
     "require-dev": {
         "symfony/var-dumper": "^4.4",

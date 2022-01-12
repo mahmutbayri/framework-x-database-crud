@@ -2,91 +2,30 @@
 
 require __DIR__ . '/../bootstrap.php';
 
-$app = new FrameworkX\App();
+use MahmutBayri\FrameworkXCrud\Controllers\{DestroyTaskController, EditTaskController, IndexTaskController, CreateTaskController, ShowTaskController, StoreTaskController, UpdateTaskController};
+use MahmutBayri\FrameworkXCrud\Middleware\HttpMethodOverride;
 
-$factory = new \Clue\React\SQLite\Factory();
-$db = $factory->openLazy(SQLITE_DB_PATH);
+$app = new FrameworkX\App(new HttpMethodOverride());
 
-// list
-$app->get('/tasks', function () use ($db) {
-    return $db->query(
-        'SELECT * FROM tasks'
-    )->then(function (Clue\React\SQLite\Result $result) {
-        return new React\Http\Message\Response(
-            200,
-            [],
-            array_reduce($result->rows, function ($carry, $item){
-                return $carry . $item['title'] . '<br/>';
-            }, '')
-        );
-    });
-});
+// Index
+$app->get('/tasks', new IndexTaskController());
 
-// new
-$app->post('/tasks', function (Psr\Http\Message\ServerRequestInterface $request) use ($db) {
-    $fields = $request->getParsedBody();
-    return $db->query('INSERT INTO tasks (title) VALUES (?)', [$fields['title']])->then(
-        function (Clue\React\SQLite\Result $result) {
-            return new React\Http\Message\Response(
-                301,
-                ['Location: /tasks'],
-                'inserted'
-            );
-        },
-        function (Exception $e) {
-            return new React\Http\Message\Response(
-                200,
-                [],
-                'Error: ' . $e->getMessage() . PHP_EOL
-            );
-        }
-    );
-});
+// create
+$app->get('/tasks/create', new CreateTaskController());
 
-//show
-$app->get('/tasks/{id}', function (Psr\Http\Message\ServerRequestInterface $request) use ($db) {
-    $id = $request->getAttribute('id');
-    return $db->query(
-        'SELECT * FROM tasks WHERE id = ?',
-        [$id]
-    )->then(function (Clue\React\SQLite\Result $result) {
-        return new React\Http\Message\Response(
-            200,
-            [],
-            json_encode($result->rows)
-        );
-    });
-});
+// store
+$app->post('/tasks', new StoreTaskController());
 
-//update
-$app->put('/tasks/{id}', function (Psr\Http\Message\ServerRequestInterface $request) use ($db) {
-    $id = $request->getAttribute('id');
-    $fields = $request->getParsedBody();
-    return $db->query(
-        'UPDATE tasks SET title = ? WHERE id = ?',
-        [$fields['title'], $id]
-    )->then(function (Clue\React\SQLite\Result $result) {
-        return new React\Http\Message\Response(
-            200,
-            [],
-            $result->changed ? 'updated' : 'not found'
-        );
-    });
-});
+// show
+$app->get('/tasks/{id}', new ShowTaskController());
+
+// edit
+$app->get('/tasks/{id}/edit', new EditTaskController());
+
+// update
+$app->put('/tasks/{id}', new UpdateTaskController());
 
 // destroy
-$app->delete('/tasks/{id}', function (Psr\Http\Message\ServerRequestInterface $request) use ($db) {
-    $id = $request->getAttribute('id');
-    return $db->query(
-        'DELETE FROM tasks WHERE id = ?',
-        [$id]
-    )->then(function (Clue\React\SQLite\Result $result) {
-        return new React\Http\Message\Response(
-            301,
-            ['Location: /tasks'],
-            $result->changed ? 'deleted' : 'not found'
-        );
-    });
-});
+$app->delete('/tasks/{id}', new DestroyTaskController());
 
 $app->run();

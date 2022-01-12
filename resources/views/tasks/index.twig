@@ -1,0 +1,32 @@
+{% extends 'layouts/master.twig' %}
+{% block content %}
+    <a href="/tasks/create" class="btn btn-primary">New Task</a>
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Title</th>
+            <th scope="col">Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for item in tasks %}
+            <tr>
+                <td>{{ item.id }}</td>
+                <td>{{ item.title }}</td>
+                <td>
+                    <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                        <a href="/tasks/{{ item.id }}" class="btn btn-info">Show</a>
+                        <a href="/tasks/{{ item.id }}/edit" class="btn btn-warning">Edit</a>
+                        <form action="/tasks/{{ item.id }}" method="POST">
+                            <input type="hidden" name="_method" value="DELETE">
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                        </form>
+                    </div>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

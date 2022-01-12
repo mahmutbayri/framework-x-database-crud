@@ -1,0 +1,13 @@
+{% extends 'layouts/master.twig' %}
+{% block content %}
+    <a class="btn btn-primary" href=/tasks">Back To List</a> <br/>
+
+    <form action="/tasks/{{ task.id }}" method="POST">
+        <div>
+            <input class="form-control" name="title" value="{{ task.title }}" placeholder="Task Name"/>
+            <input type="hidden" name="_method" value="PUT">
+        </div>
+        <button type="submit" class="btn btn-primary">Update</button>
+    </form>
+
+{% endblock %}

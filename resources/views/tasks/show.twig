@@ -1,0 +1,10 @@
+{% extends 'layouts/master.twig' %}
+{% block content %}
+
+    <a class="btn btn-primary" href="/tasks">Back To List</a> <br/>
+
+    id: {{ task.id }} <br/>
+    {{ task.title }} <br/>
+    {{ task.status }} <br/>
+
+{% endblock %}

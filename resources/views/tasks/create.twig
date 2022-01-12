@@ -1,0 +1,11 @@
+{% extends 'layouts/master.twig' %}
+{% block content %}
+    <a class="btn btn-primary" href="/tasks">Back To List</a> <br/>
+
+    <form action="/tasks" method="POST">
+        <div>
+            <input class="form-control" name="title" placeholder="Task Name"/>
+        </div>
+        <button type="submit" class="btn btn-primary">Add</button>
+    </form>
+{% endblock %}
