@@ -13,12 +13,29 @@
     composer install
     php migrate.php
 
-## Test
+## Live demo 
+
+http://18.198.188.116:3000/tasks
+
+> Depending on when your visit the address might not work.
+
+## Running on local
 
     X_LISTEN=0.0.0.0:8081 php public/index.php
 
     // with watcher
     X_LISTEN=0.0.0.0:8081 ./vendor/bin/php-watcher --watch src --watch resources public/index.php --ext=php,twig
+
+Navigate: http://localhost:8081/tasks
+
+## Running on local with docker
+
+    docker image rm -f framework-x-database-crud && docker build -t framework-x-database-crud .
+    docker container rm -f framework-x-database-crud-container && docker run --name framework-x-database-crud-container -d -p 8081:3000 -e X_LISTEN=0.0.0.0:3000 framework-x-database-crud
+    
+    // Clean up
+    docker container rm -f framework-x-database-crud-container
+    docker image rm -f framework-x-database-crud
 
 Navigate: http://localhost:8081/tasks
 

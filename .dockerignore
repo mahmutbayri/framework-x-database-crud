@@ -1,0 +1,8 @@
+screenshots
+sqlite.db
+README.md
+.gitignore
+.git
+composer.lock
+Dockerfile
+.dockerignore
