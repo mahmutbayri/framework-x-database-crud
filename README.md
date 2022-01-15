@@ -15,7 +15,7 @@
 
 ## Live demo 
 
-http://18.198.188.116:3000/tasks
+http://3.64.192.83:3000/tasks
 
 > Depending on when your visit the address might not work.
 
