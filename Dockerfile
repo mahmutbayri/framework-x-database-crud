@@ -1,4 +1,4 @@
-FROM php:7.4.1-cli-alpine3.11
+FROM php:7.4-cli-alpine3.15
 RUN mkdir -p /src/app
 COPY . /src/app
 WORKDIR /src/app

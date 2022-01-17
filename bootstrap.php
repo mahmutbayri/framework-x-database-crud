@@ -2,14 +2,16 @@
 
 use Clue\React\SQLite\DatabaseInterface;
 use Clue\React\SQLite\Factory;
+use React\ChildProcess\Process;
+use React\EventLoop\Loop;
 use Twig\Environment;
 use Twig\Loader\ArrayLoader;
-use Twig\TwigFilter;
 
 require __DIR__ . '/vendor/autoload.php';
 
 const SQLITE_DB_PATH = __DIR__ . '/sqlite.db';
 const TEMPLATE_FOLDER = __DIR__ . '/resources/views/';
+const MIGRATION_JOB = __DIR__ . '/migrate.php';
 
 /**
  * @return DatabaseInterface
@@ -53,6 +55,14 @@ function getTwig()
 //        }));
     }
     return $twig;
+}
+
+function resetMigration()
+{
+    $process = new Process(sprintf('php %s', MIGRATION_JOB));
+    Loop::addPeriodicTimer(60 * 30, function () use ($process) {
+        $process->start();
+    });
 }
 
 // cache templates

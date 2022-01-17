@@ -36,4 +36,7 @@ $app->put('/tasks/{id}', new UpdateTaskController());
 // destroy
 $app->delete('/tasks/{id}', new DestroyTaskController());
 
+// It runs every 30 minutes to reset db.
+resetMigration();
+
 $app->run();
