@@ -5,15 +5,20 @@ require __DIR__ . '/../bootstrap.php';
 use MahmutBayri\FrameworkXCrud\Controllers\{
     DestroyTaskController,
     EditTaskController,
+    HomeController,
     IndexTaskController,
     CreateTaskController,
     ShowTaskController,
     StoreTaskController,
     UpdateTaskController
 };
+
 use MahmutBayri\FrameworkXCrud\Middleware\HttpMethodOverride;
 
 $app = new FrameworkX\App(new HttpMethodOverride());
+
+// Home
+$app->get('/', new HomeController());
 
 // Index
 $app->get('/tasks', new IndexTaskController());
