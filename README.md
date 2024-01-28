@@ -50,20 +50,39 @@ Navigate: http://localhost:8081/tasks
 
 Navigate: http://localhost:8081/tasks
 
+
+## Performance
+On a MacBook Pro 2,4 GHz 8-Core Intel Core i9
+
+    hey -n 5000 -c 100 URL
+
+| URL                                | Requests/sec |
+|------------------------------------|--------------|
+| http://localhost:8081/tasks        | 2056         |
+| http://localhost:8081/tasks/create | 2334         |
+| http://localhost:8081/tasks/1      | 2078         |
+| http://localhost:8081/tasks/1/edit | 2060         |
+
+
 ## Screenshots
 
-List the tasks
+### List the tasks
+
+http://localhost:8081/tasks
 
 ![](screenshots/indexMedium.jpeg)
 
-Create a task
+### Create a task
+http://localhost:8081/tasks/create
 
 ![](screenshots/createMedium.jpeg)
 
-Show a task
+### Show a task
+http://localhost:8081/tasks/1
 
 ![](screenshots/showMedium.jpeg)
 
-Edit a task
+### Edit a task
+http://localhost:8081/tasks/1/edit
 
 ![](screenshots/editMedium.jpeg)
