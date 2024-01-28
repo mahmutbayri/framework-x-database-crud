@@ -1,0 +1,10 @@
+FROM php:8.2-cli-alpine3.19
+COPY --from=composer /usr/bin/composer /usr/bin/composer
+COPY . /var/www/html
+WORKDIR /var/www/html
+RUN docker-php-ext-configure pcntl --enable-pcntl && docker-php-ext-install pcntl
+RUN composer --version && php -v
+RUN composer install --no-dev --no-scripts
+RUN php migrate.php
+EXPOSE 3000
+ENTRYPOINT ["php", "/var/www/html/public/index.php"]

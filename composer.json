@@ -15,7 +15,8 @@
     ],
     "require": {
         "ext-json": "*",
-        "clue/reactphp-sqlite": "^1.5",
+        "ext-pcntl": "*",
+        "clue/reactphp-sqlite": "^1.6",
         "react/async": "3.x",
         "clue/framework-x": "dev-main",
         "twig/twig": "^3.3"
